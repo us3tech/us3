@@ -1,0 +1,6 @@
+{{- /* Spec pages carry no front matter; their title is the "# " line (design §6.3). */ -}}
+{{- $t := .Title -}}
+{{- if eq .Type "spec" -}}
+{{- with findRESubmatch `(?m)^# (.+)$` .RawContent 1 }}{{ $t = index (index . 0) 1 }}{{ end -}}
+{{- end -}}
+{{- return $t -}}

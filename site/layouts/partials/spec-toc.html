@@ -1,0 +1,16 @@
+{{- /* Headings of depth 2–3 under the section ids of the heading render hook. */ -}}
+{{- $items := slice -}}
+{{- range . -}}
+{{- if and (ge .Level 2) (le .Level 3) -}}{{ $items = $items | append . }}{{- end -}}
+{{- end -}}
+{{- if $items }}
+<ol>
+{{- range $items }}
+{{- $h := . }}
+{{- $n := partial "sec-number.html" .Title }}
+<li><a href="#{{ with $n }}s{{ . }}{{ else }}{{ $h.ID }}{{ end }}">{{ with $n }}{{ . }} {{ end }}{{ replaceRE `^\d+(?:\.\d+)*\.?\s+` "" .Title 1 }}</a>{{ partial "spec-toc.html" .Headings }}</li>
+{{- end }}
+</ol>
+{{- else -}}
+{{- range . }}{{ partial "spec-toc.html" .Headings }}{{ end -}}
+{{- end -}}

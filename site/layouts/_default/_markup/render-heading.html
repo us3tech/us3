@@ -1,0 +1,8 @@
+{{- $n := partial "sec-number.html" .PlainText -}}
+{{- if eq .Level 1 -}}
+<h1>{{ .Text }}</h1>
+{{- else if $n -}}
+<h{{ .Level }} id="s{{ $n }}"><a class="sec" href="#s{{ $n }}">§{{ $n }}</a> {{ replaceRE `^\d+(?:\.\d+)*\.?\s+` "" .Text 1 | safeHTML }}</h{{ .Level }}>
+{{- else -}}
+<h{{ .Level }} id="{{ .Anchor }}">{{ .Text }}</h{{ .Level }}>
+{{- end }}

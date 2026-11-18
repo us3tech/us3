@@ -1,0 +1,101 @@
+{{ define "main" }}
+{{ $mark := resources.Get "brand/us3-mark.svg" }}
+{{ $turbine := resources.Get "brand/turbine.svg" }}
+{{ $turbineWord := resources.Get "brand/turbine-wordmark-tm.svg" }}
+{{ $pmpwrk := resources.Get "brand/pmpwrk.svg" }}
+{{ $logo := resources.Get "brand/us3-logo.svg" }}
+<div class="pattern">
+<section class="wrap hero" id="top">
+<div class="hero-text">
+<h1>{{ i18n "hero_title" }}</h1>
+<p class="lead">{{ i18n "hero_body" }}</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="#turbine">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg>
+{{ i18n "hero_cta_turbine" }}</a>
+<a class="btn" href="{{ "/spec/v1/" | relLangURL }}">{{ i18n "hero_cta_spec" }}</a>
+</div>
+</div>
+<div class="hero-mark"><img src="{{ $mark.RelPermalink }}" alt=""></div>
+</section>
+
+<section class="wrap tiles">
+<article class="tile tile-main" id="turbine">
+<div class="tile-intro">
+<span class="dashes dash-turbine" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="tile-head">
+<img class="tile-icon" src="{{ $turbine.RelPermalink }}" alt="" width="60" height="60">
+<h2 class="tile-wordmark"><img src="{{ $turbineWord.RelPermalink }}" alt="turbine"></h2>
+</div>
+<p class="tile-body">{{ i18n "tile_turbine_body" }}</p>
+<p class="tile-meta">{{ with partial "release.html" . }}{{ i18n "version_label" }} {{ .version }} · {{ end }}<a href="{{ "/turbine/" | relLangURL }}">{{ i18n "tile_turbine_more" }}</a> · <a href="{{ i18n "path_changes" | relLangURL }}">{{ i18n "tile_turbine_news" }}</a> · <a href="{{ i18n "path_help" | relLangURL }}">{{ i18n "tile_turbine_help" }}</a></p>
+</div>
+<div class="tile-downloads">
+{{ partial "downloads.html" (dict "product" "turbine" "page" .) }}
+</div>
+</article>
+
+<div class="tile-pair">
+<article class="tile tile-side" id="pmpwrk">
+<span class="dashes dash-pmpwrk" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="tile-head">
+<img class="tile-icon tile-icon-sm tile-icon-round" src="{{ $pmpwrk.RelPermalink }}" alt="" width="52" height="52">
+<h2 class="tile-title">pmpwrk</h2>
+</div>
+<p class="tile-body">{{ i18n "tile_pmpwrk_body" }}</p>
+<a class="tile-link" href="{{ "/pmpwrk/" | relLangURL }}">{{ i18n "tile_pmpwrk_link" }}</a>
+</article>
+<article class="tile tile-side" id="spec">
+<span class="dashes dash-spec" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="tile-head">
+<img class="tile-icon tile-icon-sm" src="{{ $mark.RelPermalink }}" alt="" height="52">
+<h2 class="tile-title">{{ i18n "tile_spec_title" }}</h2>
+</div>
+<p class="tile-body">{{ i18n "tile_spec_body" }}</p>
+<a class="tile-link tile-link-mono" href="{{ "/spec/v1/" | relLangURL }}">us3.tech/spec/v1</a>
+</article>
+</div>
+</section>
+</div>
+
+<section class="band" id="how">
+<div class="wrap band-inner">
+<div class="band-head">
+<div class="colour-rule" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+<h2 class="h-section">{{ i18n "how_title" }}</h2>
+</div>
+<ol class="steps">
+<li class="step step-1"><strong>{{ i18n "how_1_title" }}</strong><span>{{ i18n "how_1_body" }}</span></li>
+<li class="step step-2"><strong>{{ i18n "how_2_title" }}</strong><span>{{ i18n "how_2_body" }}</span></li>
+<li class="step step-3"><strong>{{ i18n "how_3_title" }}</strong><span>{{ i18n "how_3_body" }}</span></li>
+<li class="step step-4"><strong>{{ i18n "how_4_title" }}</strong><span>{{ i18n "how_4_body" }}</span></li>
+</ol>
+</div>
+</section>
+
+<section class="pattern-soft last-band">
+<div class="wrap last-inner">
+<div class="last-head">
+<img src="{{ $logo.RelPermalink }}" alt="{{ i18n "logo_alt" }}">
+<h2 class="h-last">{{ i18n "last_title" }}</h2>
+</div>
+<div class="last-body">
+<p>{{ i18n "last_1" }}</p>
+<p>{{ i18n "last_2" }}</p>
+<p>{{ i18n "last_3" }}</p>
+<dl class="tech-list"><dt>AES-256</dt><dd>{{ i18n "tech_aes" }}</dd><dt>FUSE</dt><dd>{{ i18n "tech_fuse" }}</dd><dt>WebDAV</dt><dd>{{ i18n "tech_dav" }}</dd></dl>
+</div>
+</div>
+</section>
+
+<section class="wrap notes">
+<div class="note">
+<h3>{{ i18n "bring_title" }}</h3>
+<p>{{ i18n "bring_body" }}</p>
+</div>
+<div class="note">
+<h3>{{ i18n "not_title" }}</h3>
+<p>{{ i18n "not_body" }}</p>
+</div>
+</section>
+{{ end }}

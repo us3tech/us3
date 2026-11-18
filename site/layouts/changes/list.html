@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="pattern">
+<section class="wrap ch-hero">
+<h1 class="ch-title">{{ .Title }}</h1>
+<p class="ch-intro">{{ i18n "ch_intro" }}</p>
+<div class="ch-filter" role="group" aria-label="{{ i18n "ch_filter_aria" }}">
+{{- range slice "all" "turbine" "pmpwrk" "spec" }}
+<button type="button" class="ch-chip" data-filter="{{ . }}" aria-pressed="{{ if eq . "all" }}true{{ else }}false{{ end }}">{{ i18n (printf "ch_filter_%s" .) }}</button>
+{{- end }}
+</div>
+</section>
+</div>
+<section class="wrap ch-list">
+{{- with hugo.Data.upcoming }}
+<article class="ch-entry ch-upcoming">
+<div class="ch-meta">
+<span class="ch-date">{{ i18n "ch_upcoming_when" }}</span>
+<span class="ch-tag">{{ i18n "ch_upcoming_tag" }}</span>
+</div>
+<div class="ch-body">
+<h2>{{ i18n "ch_upcoming_title" }}</h2>
+<ul>
+{{- range . }}<li>{{ index . site.Language.Lang }}</li>{{ end }}
+</ul>
+</div>
+</article>
+{{- end }}
+{{- range .Pages.ByDate.Reverse }}
+{{ partial "change-entry.html" (dict "page" . "list" true) }}
+{{- end }}
+</section>
+{{ end }}

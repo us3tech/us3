@@ -1,0 +1,4 @@
+{{- /* Section number of a heading text ("7.1 Blockgeometrie" -> "7.1"), or "" (design §6.3). */ -}}
+{{- $n := "" -}}
+{{- with findRESubmatch `^(\d+(?:\.\d+)*)\.?\s` . 1 -}}{{ $n = index (index . 0) 1 }}{{- end -}}
+{{- return $n -}}

@@ -1,0 +1,6 @@
+{{ define "main" }}
+<section class="wrap ch-list ch-single">
+{{ partial "change-entry.html" (dict "page" . "list" false) }}
+<p><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a></p>
+</section>
+{{ end }}

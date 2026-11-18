@@ -1,0 +1,382 @@
+- id: nav_watch
+  translation: Anschauen
+- id: nav_upload
+  translation: Hochladen
+- id: nav_spec
+  translation: Spezifikation
+- id: home_aria
+  translation: US3 Startseite
+- id: language_aria
+  translation: Sprache
+- id: footer_license
+  translation: US3 ist Open Source unter AGPL-3.0, die Spezifikation unter CC BY 4.0.
+- id: to_top
+  translation: "↑ Nach oben"
+- id: to_top_short
+  translation: "Nach oben"
+- id: footer_source
+  translation: Quelltext auf {{ .Link }}.
+- id: hero_title
+  translation: "Videos im Usenet ablegen. Verschlüsselt. Abspielbar ab der ersten Sekunde."
+- id: hero_body
+  translation: "US3 ist ein offenes Format. Eine Datei wird zu einem AES-256-ZIP und liegt verteilt auf vielen Artikeln im Usenet. Ein einziges Token sagt, wo sie liegen und wie sie aufgehen."
+- id: hero_cta_turbine
+  translation: "turbine laden"
+- id: hero_cta_spec
+  translation: "Spezifikation lesen"
+- id: tile_turbine_body
+  translation: "Installieren, Usenet-Zugang eintragen, fertig. Danach genügt ein Klick auf einen Link, und das Video läuft, im Browser oder in deinem Mediaserver."
+- id: tile_turbine_news
+  translation: "Was ist neu"
+- id: tile_turbine_help
+  translation: "Hilfe zur Einrichtung"
+- id: tile_pmpwrk_body
+  translation: "Zum vollautomatischen Hochladen eigener Videos. pmpwrk verschlüsselt, postet und legt Reserven an. Danach prüft es in Abständen jeden Upload und postet nach, was verloren ging, solange du es laufen lässt."
+- id: tile_pmpwrk_link
+  translation: "So arbeitet pmpwrk →"
+- id: tile_spec_title
+  translation: "Spezifikation"
+- id: tile_spec_body
+  translation: "Token, Schlüsselableitung, Message-IDs, ZIP-Aufbau, PAR2. Vollständig und offen beschrieben, auf Deutsch und Englisch, damit jeder eigene Werkzeuge bauen kann."
+- id: how_title
+  translation: "So funktioniert US3"
+- id: how_1_title
+  translation: "Ein Token"
+- id: how_1_body
+  translation: "pmpwrk erzeugt ein zufälliges Token. Daraus leiten sich Schlüssel und Fundorte ab, sonst gibt es nichts zu merken."
+- id: how_2_title
+  translation: "Verschlüsselt, im Fluss"
+- id: how_2_body
+  translation: "Die Datei wird zu einem AES-256-ZIP, in Artikel geteilt und gepostet. Auf die Platte kommt dabei nichts."
+- id: how_3_title
+  translation: "Mit Reserve"
+- id: how_3_body
+  translation: "PAR2-Daten liegen daneben. Geht ein Teil verloren, wird er daraus neu berechnet und nachgepostet."
+- id: how_4_title
+  translation: "Sofort abspielen"
+- id: how_4_body
+  translation: "turbine rechnet aus jeder Stelle im Video den passenden Artikel aus und lädt nur den. Vorspulen kostet Sekunden."
+- id: logo_alt
+  translation: "US3 – Usenet Simplified Streaming Specification"
+- id: last_title
+  translation: "Gebaut, um zu bleiben"
+- id: last_1
+  translation: "Usenet-Anbieter halten Artikel über viele Jahre. US3 nutzt das, ohne sich darauf zu verlassen: Jeder Upload trägt Reservedaten mit, und pmpwrk ersetzt fehlende Teile, bevor sie zum Problem werden."
+- id: last_2
+  translation: "Und falls die US3-Werkzeuge mal nicht zur Hand sind: Alle Artikel der Reihe nach ergeben ein gewöhnliches verschlüsseltes ZIP. 7-Zip und das Passwort genügen."
+- id: last_3
+  translation: "Das Format ist offen beschrieben. Nichts hängt an einem einzelnen Programm oder Anbieter, und jeder kann eigene Werkzeuge dafür bauen."
+- id: tech_aes
+  translation: "verschlüsselt, als gewöhnliches ZIP nach WinZip AE-2"
+- id: tech_fuse
+  translation: "bindet die Bibliothek als Ordner ein, als läge alles auf der Platte"
+- id: tech_dav
+  translation: "gibt die Bibliothek für Mediaserver frei"
+- id: bring_title
+  translation: "Was du mitbringst"
+- id: bring_body
+  translation: "Einen Zugang bei einem Usenet-Anbieter, einen Mac oder Windows-PC und etwas Lust an Technik. turbine ist einfach, aber du trägst selbst einen Newsserver ein und lässt eine nicht signierte App starten."
+- id: not_title
+  translation: "Was US3 nicht ist"
+- id: not_body
+  translation: "Kein Katalog und keine Suche. US3 legt ab und spielt ab, was du selbst hochlädst oder bekommst. Wer welche Inhalte posten darf, regeln Urheberrecht und die Bedingungen deines Anbieters."
+- id: path_changes
+  translation: "/neu/"
+- id: path_help
+  translation: "/hilfe/"
+- id: version_label
+  translation: "Version"
+- id: dl_none
+  translation: "Demnächst hier verfügbar"
+- id: dl_none_text
+  translation: "Die erste Version von {{ .Product }} entsteht gerade. Schau bald wieder vorbei."
+- id: dl_choose
+  translation: "Plattform wählen"
+- id: dl_arch_x64
+  translation: "x64 · Intel / AMD"
+- id: dl_arch_intel
+  translation: "Intel / AMD"
+- id: dl_arch_arm
+  translation: "ARM 64 Bit"
+- id: dl_arch_apple
+  translation: "Apple Silicon"
+- id: dl_zip_lead
+  translation: "Als ZIP zum Entpacken:"
+- id: dl_zip_note
+  translation: "{{ .Product }}.exe ohne Installation, zum Beispiel für den USB-Stick"
+- id: dl_zip
+  translation: "ZIP"
+- id: dl_brew_lead
+  translation: "Mit Homebrew:"
+- id: dl_brew_note
+  translation: "Updates dann mit brew upgrade"
+- id: dl_copy
+  translation: "Kopieren"
+- id: dl_copied
+  translation: "Kopiert"
+- id: dl_synology
+  translation: "Ab DSM 7.0. Welchen Prozessor deine Synology hat, steht unter Systemsteuerung › Infocenter. Danach erscheint deine Bibliothek als freigegebener Ordner, den dein Mediaserver direkt lesen kann."
+- id: dl_help_lead
+  translation: "Hilfe beim Installieren?"
+- id: dl_help_link
+  translation: "So geht’s weiter"
+- id: spec_hero_title
+  translation: "Ein Token. Daraus folgt alles andere."
+- id: spec_hero_body
+  translation: "US3 beschreibt, wie eine einzelne Datei als verschlüsselter ZIP-Strom im Usenet liegt, sodass sie sich direkt abspielen lässt und trotzdem ein gewöhnliches ZIP bleibt. Wo jedes Stück liegt und wie es aufgeht, wird aus einem einzigen Geheimnis berechnet."
+- id: spec_stand
+  translation: "Stand"
+- id: spec_as_markdown
+  translation: "Als Markdown"
+- id: spec_other_language
+  translation: "English version"
+- id: spec_history
+  translation: "Änderungen im Repository"
+- id: spec_path_aria
+  translation: "Der Weg einer Datei"
+- id: spec_path_1_title
+  translation: "Token"
+- id: spec_path_1_body
+  translation: "32 Byte Zufall, dazu Größe, Blockgröße, Endung"
+- id: spec_path_2_title
+  translation: "Ableitung"
+- id: spec_path_2_body
+  translation: "ZIP-Passwort und Message-IDs per HMAC-SHA-256"
+- id: spec_path_3_title
+  translation: "ZIP-Strom"
+- id: spec_path_3_body
+  translation: "AES-256, in gleich große Artikel geteilt, yEnc"
+- id: spec_path_4_title
+  translation: "Reserve"
+- id: spec_path_4_body
+  translation: "PAR2 und Generationen für Reparaturen"
+- id: spec_path_5_title
+  translation: "Abspielen"
+- id: spec_path_5_body
+  translation: "Byte-Position → Artikel → Message-ID"
+- id: spec_prop_1_title
+  translation: "Zustandslos"
+- id: spec_prop_1_body
+  translation: "Kein Index, keine NZB, kein Server, der etwas weiß. Wer das Token hat, berechnet jede Message-ID selbst."
+- id: spec_prop_2_title
+  translation: "Nicht verkettbar"
+- id: spec_prop_2_body
+  translation: "Jeder Artikel trägt eine eigene, abgeleitete ID. Von außen haben die Teile eines Uploads nichts gemeinsam."
+- id: spec_prop_3_title
+  translation: "Rückwärtskompatibel"
+- id: spec_prop_3_body
+  translation: "Alle Artikel der Reihe nach sind eine gültige ZIP-Datei nach WinZip AE-2. 7-Zip öffnet sie mit dem abgeleiteten Passwort."
+- id: spec_toc
+  translation: "Inhalt"
+- id: spec_toc_aria
+  translation: "Inhalt der Spezifikation"
+- id: spec_license
+  translation: "Lizenziert unter CC BY 4.0."
+- id: pm_tagline
+  translation: "Ordner füllen, den Rest erledigt pmpwrk. Auch Monate später noch."
+- id: pm_lead
+  translation: "pmpwrk lädt eigene Videos vollautomatisch ins Usenet und kümmert sich danach um sie: Es prüft in Abständen, ob noch alles da ist, und stellt fehlende Teile wieder her, bevor jemand etwas davon merkt."
+- id: pm_care_title
+  translation: "Nachsorge"
+- id: pm_care_count
+  translation: "3 Uploads"
+- id: pm_care_ok
+  translation: "alles da"
+- id: pm_care_repair
+  translation: "repariert gerade"
+- id: pm_way_title
+  translation: "Der Weg eines Videos"
+- id: pm_way_1_title
+  translation: "Datei in den Eingangsordner legen"
+- id: pm_way_1_body
+  translation: "Sobald sie fertig kopiert ist, nimmt pmpwrk sie sich vor. Wer lieber selbst bestimmt, schaltet auf Handbetrieb und gibt jede Datei im Browser frei."
+- id: pm_way_2_title
+  translation: "In einem Zug verschlüsselt und gepostet"
+- id: pm_way_2_body
+  translation: "Die Datei wird einmal gelesen, verschlüsselt und in Artikel geteilt, die Reservedaten entstehen nebenher. Bricht etwas ab, macht pmpwrk nach dem Neustart genau dort weiter."
+- id: pm_way_3_title
+  translation: "Link kopieren, fertig"
+- id: pm_way_3_body
+  translation: "Zu jedem fertigen Upload gibt es einen Link, den turbine öffnet. Für klassische Programme liegt auch eine NZB bereit."
+- id: pm_way_4_title
+  translation: "Nachsorge mit Ampel"
+- id: pm_way_4_body
+  translation: "pmpwrk schaut regelmäßig nach. Grün heißt alles da, Gelb heißt pmpwrk repariert gerade, Rot heißt, hier musst du selbst entscheiden. Bei Rot meldet sich pmpwrk einmal, auf der Seite und als Mitteilung auf deinem Rechner."
+- id: pm_more_title
+  translation: "Was sonst noch drin ist"
+- id: pm_more_1_title
+  translation: "Zweite Meinung"
+- id: pm_more_1_body
+  translation: "Auf Wunsch prüft pmpwrk auch bei einem zweiten Anbieter, ob deine Uploads dort angekommen sind. Nur lesend."
+- id: pm_more_2_title
+  translation: "Läuft nebenbei"
+- id: pm_more_2_body
+  translation: "Ein Symbol in der Menüleiste oder im Infobereich, Start bei der Anmeldung, bedient wird im Browser."
+- id: pm_more_3_title
+  translation: "Eigene Skripte"
+- id: pm_more_3_body
+  translation: "Nach jedem Upload oder bei Rot kann pmpwrk ein Skript starten, das etwa eine Mail schickt oder die Quelle wegräumt."
+- id: pm_more_4_title
+  translation: "Auch ohne Bildschirm"
+- id: pm_more_4_body
+  translation: "Als Dienst auf einem Server oder NAS, mit REST-Schnittstelle und Messwerten für Prometheus."
+- id: pm_note
+  translation: "Wichtig: Was im Usenet steht, lässt sich nicht zurückholen. pmpwrk startet deshalb im Handbetrieb und lädt erst hoch, wenn du eine Datei freigibst. Die Quelldatei bleibt liegen, denn aus ihr repariert pmpwrk später."
+- id: help_crumb
+  translation: "Hilfe beim Installieren"
+- id: help_lead
+  translation: "In fünf Minuten erledigt. Du brauchst nur die Zugangsdaten deines Usenet-Anbieters: Servername, Benutzername und Passwort."
+- id: help_tabs_aria
+  translation: "Plattform"
+- id: help_windows_1_title
+  translation: "MSI-Paket doppelklicken"
+- id: help_windows_1_body
+  translation: "Nimm <code>x64</code> für die meisten PCs, <code>ARM</code> für Geräte mit Snapdragon-Prozessor."
+- id: help_windows_2_title
+  translation: "Blaues Fenster „Der Computer wurde durch Windows geschützt“"
+- id: help_windows_2_body
+  translation: "turbine ist noch nicht bei Microsoft registriert. Klicke auf „Weitere Informationen“ und dann auf „Trotzdem ausführen“. Das passiert nur beim ersten Mal."
+- id: help_win_dialog_title
+  translation: "Der Computer wurde durch Windows geschützt"
+- id: help_win_dialog_more
+  translation: "Weitere Informationen"
+- id: help_win_dialog_run
+  translation: "Trotzdem ausführen"
+- id: help_windows_3_title
+  translation: "Newsserver eintragen"
+- id: help_windows_3_body
+  translation: "turbine öffnet sich im Browser. Trage Server, Benutzername und Passwort ein und klicke auf „Verbindung testen“. Unten rechts im Infobereich sitzt jetzt das turbine-Rad."
+- id: help_windows_4_title
+  translation: "Link anklicken"
+- id: help_windows_4_body
+  translation: "Fertig. Ab jetzt öffnet jeder US3-Link das Video direkt in turbine."
+- id: help_macos_1_title
+  translation: "Disk-Image öffnen, turbine in „Programme“ ziehen"
+- id: help_macos_1_body
+  translation: "Oder im Terminal: <code>brew install --cask {{ .Tap }}/turbine</code>"
+- id: help_macos_2_title
+  translation: "Beim ersten Start einmal erlauben"
+- id: help_macos_2_body
+  translation: "macOS meldet, dass turbine nicht geöffnet werden kann. Öffne Systemeinstellungen › Datenschutz &amp; Sicherheit, scrolle nach unten und klicke bei turbine auf „Dennoch öffnen“."
+- id: help_macos_3_title
+  translation: "Newsserver eintragen"
+- id: help_macos_3_body
+  translation: "turbine öffnet sich im Browser. Server, Benutzername, Passwort, „Verbindung testen“. Das Rad sitzt jetzt oben in der Menüleiste."
+- id: help_macos_4_title
+  translation: "Link anklicken"
+- id: help_macos_4_body
+  translation: "Fertig. Ab jetzt öffnet jeder US3-Link das Video direkt in turbine."
+- id: help_synology_1_title
+  translation: "Das passende Paket wählen"
+- id: help_synology_1_body
+  translation: "Systemsteuerung › Infocenter zeigt den Prozessor. Intel oder AMD: <code>x86_64</code>. Realtek: <code>armv8</code>. Ältere Modelle mit 32-Bit-ARM werden nicht unterstützt."
+- id: help_synology_2_title
+  translation: "Paket-Zentrum › Manuelle Installation"
+- id: help_synology_2_body
+  translation: "Die SPK-Datei auswählen. DSM weist darauf hin, dass das Paket nicht von Synology stammt. Bestätigen, weiter."
+- id: help_synology_3_title
+  translation: "turbine aus dem Hauptmenü öffnen"
+- id: help_synology_3_body
+  translation: "Newsserver eintragen wie am Rechner. Deine Bibliothek liegt danach in {{ .Folder }}."
+- id: help_syn_folder
+  translation: "dem freigegebenen Ordner, den turbine anlegt"
+- id: help_synology_4_title
+  translation: "Ordner im Mediaserver hinzufügen"
+- id: help_synology_4_body
+  translation: "Als Mediathek anlegen, fertig. Neue Links landen dort von selbst."
+- id: help_syn_soon
+  translation: "Das Synology-Paket erscheint demnächst."
+- id: help_sum_title
+  translation: "Download prüfen"
+- id: help_sum_lead
+  translation: "Die Ausgabe des Befehls muss mit der Prüfsumme (SHA-256) dahinter übereinstimmen."
+- id: help_aside_1_title
+  translation: "Noch keinen Usenet-Zugang?"
+- id: help_aside_1_body
+  translation: "turbine funktioniert mit jedem Anbieter, der verschlüsselte Verbindungen anbietet. Die gibt es im Monatsabo oder als Datenpaket."
+- id: help_aside_2_title
+  translation: "Hakt es?"
+- id: help_aside_2_body
+  translation: "Unter {{ .Link }} › Issues fragen. Hilfreich sind die Version, das System und was genau passiert ist."
+- id: ch_intro
+  translation: "Alle Versionen von turbine und pmpwrk und die Änderungen an der Spezifikation. Die neueste steht oben."
+- id: ch_filter_aria
+  translation: "Filtern"
+- id: ch_filter_all
+  translation: "Alles"
+- id: ch_filter_turbine
+  translation: "turbine"
+- id: ch_filter_pmpwrk
+  translation: "pmpwrk"
+- id: ch_filter_spec
+  translation: "Spezifikation"
+- id: ch_upcoming_when
+  translation: "in Arbeit"
+- id: ch_upcoming_tag
+  translation: "demnächst"
+- id: ch_upcoming_title
+  translation: "Mehr Wege zu turbine"
+- id: ch_link_turbine
+  translation: "Herunterladen"
+- id: ch_link_pmpwrk
+  translation: "Mehr über pmpwrk"
+- id: ch_link_spec
+  translation: "Zur Spezifikation"
+- id: ch_spec_label
+  translation: "Spec"
+- id: ch_feed
+  translation: "RSS-Feed"
+- id: ch_feed_title
+  translation: "US3 – Was ist neu"
+- id: tb_tagline
+  translation: "Link anklicken, Film läuft. Ohne vorher alles herunterzuladen."
+- id: tb_lead
+  translation: "turbine holt aus dem Usenet nur die Stücke, die gerade gebraucht werden, und gibt das Video an deinen Browser oder Mediaserver weiter. Vorspulen geht sofort, auch mitten in einem langen Film."
+- id: tb_lib_title
+  translation: "Bibliothek"
+- id: tb_lib_count
+  translation: "3 Filme"
+- id: tb_lib_playing
+  translation: "läuft"
+- id: tb_lib_ready
+  translation: "bereit"
+- id: tb_way_title
+  translation: "Vom Link zum Bild"
+- id: tb_way_1_title
+  translation: "Einmal einrichten"
+- id: tb_way_1_body
+  translation: "Server, Benutzername und Passwort deines Usenet-Anbieters eintragen und auf „Verbindung testen“ klicken. Mehr gibt es nicht einzustellen."
+- id: tb_way_2_title
+  translation: "Link anklicken"
+- id: tb_way_2_body
+  translation: "Ein US3-Link aus Mail, Chat oder Webseite landet mit einem Klick in deiner Bibliothek. Du kannst ihn auch auf der Seite von turbine einfügen."
+- id: tb_way_3_title
+  translation: "Sofort abspielen"
+- id: tb_way_3_body
+  translation: "turbine rechnet aus, in welchem Artikel jede Stelle des Videos liegt, und lädt nur diesen. Der Film startet nach Sekunden, und ein Sprung ans Ende dauert nicht länger."
+- id: tb_way_4_title
+  translation: "Im Mediaserver ansehen"
+- id: tb_way_4_body
+  translation: "Die Bibliothek steht als freigegebener Ordner im Heimnetz. Dein Mediaserver nimmt sie auf wie jede andere Videosammlung, und der Film läuft auf dem Fernseher."
+- id: tb_more_title
+  translation: "Was sonst noch drin ist"
+- id: tb_more_1_title
+  translation: "Viele Verbindungen"
+- id: tb_more_1_body
+  translation: "turbine liest über mehrere Verbindungen gleichzeitig voraus. So läuft auch ein großer Film flüssig, soweit dein Zugang es hergibt."
+- id: tb_more_2_title
+  translation: "Spielt weiter"
+- id: tb_more_2_body
+  translation: "Ist ein Stück endgültig verloren, gibt es an der Stelle einen kurzen Ruckler. Der Film bricht deshalb nicht ab."
+- id: tb_more_3_title
+  translation: "Läuft nebenbei"
+- id: tb_more_3_body
+  translation: "Ein Symbol in der Menüleiste oder im Infobereich, Start bei der Anmeldung, bedient wird im Browser."
+- id: tb_more_4_title
+  translation: "Mit Passwort"
+- id: tb_more_4_body
+  translation: "Gibst du die Bibliothek im Heimnetz frei, schützt ein Passwort die Seite und den Ordner."
+- id: tb_note
+  translation: "turbine braucht nur deinen eigenen Zugang bei einem Usenet-Anbieter. Es gibt keinen Katalog und keine Suche: Abgespielt wird, wofür du einen Link hast."
+- id: tile_turbine_more
+  translation: "So arbeitet turbine"

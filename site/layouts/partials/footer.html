@@ -1,0 +1,7 @@
+{{ $link := printf `<a href="https://github.com/%s">GitHub</a>` site.Params.repo }}
+<footer class="site-footer">
+<div class="wrap footer">
+<span>{{ i18n "footer_license" }} {{ i18n "footer_source" (dict "Link" $link) | safeHTML }}</span>
+<a class="to-top" href="#page-top">{{ i18n "to_top" }}</a>
+</div>
+</footer>

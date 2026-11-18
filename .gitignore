@@ -1,0 +1,10 @@
+/bin/
+/dist/
+*.zip
+*.par2
+*.nzb
+/pmpwrk.conf
+/site/public/
+/site/resources/
+/site/data/release.json
+/site/.hugo_build.lock

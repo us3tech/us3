@@ -1,0 +1,67 @@
+baseURL = "https://us3.tech/"
+title = "US3"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[languages.en]
+weight = 1
+label = "EN"
+
+[languages.de]
+weight = 2
+label = "DE"
+
+[params]
+repo = "us3tech/us3"
+tap = "us3tech/tap"
+releaseURL = "https://github.com/us3tech/us3/releases/latest/download/release.json"
+
+[markup.goldmark.renderer]
+unsafe = false
+
+[outputs]
+home = ["HTML"]
+
+# Own mounts replace the defaults, so they are listed again. The spec files
+# are mounted as they are, without front matter (Spec pages: design §6.3).
+[[module.mounts]]
+source = "content"
+target = "content"
+
+[[module.mounts]]
+source = "../spec/US3-SPEC.en.md"
+target = "content/spec/v1/index.md"
+
+[[module.mounts]]
+source = "../spec/US3-SPEC.md"
+target = "content/spec/v1/index.de.md"
+
+[[module.mounts]]
+source = "layouts"
+target = "layouts"
+
+[[module.mounts]]
+source = "assets"
+target = "assets"
+
+[[module.mounts]]
+source = "static"
+target = "static"
+
+[[module.mounts]]
+source = "i18n"
+target = "i18n"
+
+[[module.mounts]]
+source = "data"
+target = "data"
+
+# German entries live under /de/neu/ like their list page.
+[languages.de.permalinks.page]
+changes = "/neu/:contentbasename/"
+
+# The release feed is fetched at build time; a cached copy must not outlive the build.
+[caches.getresource]
+maxAge = 0

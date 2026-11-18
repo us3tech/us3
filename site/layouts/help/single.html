@@ -1,0 +1,65 @@
+{{ define "main" }}
+{{ $icon := resources.Get "brand/turbine.svg" }}
+{{ $rel := partial "release.html" . }}
+{{ $ctx := dict "Tap" site.Params.tap "Folder" (i18n "help_syn_folder") }}
+{{ $names := dict "windows" "Windows" "macos" "macOS" "synology" "Synology" }}
+{{ $soon := true }}
+{{ $hasDmg := false }}
+{{ with $rel }}{{ range .files }}{{ if and (eq .product "turbine") (eq .platform "macos") (eq .kind "dmg") }}{{ $hasDmg = true }}{{ end }}{{ end }}{{ end }}
+{{ with $rel }}{{ range .files }}{{ if and (eq .product "turbine") (eq .platform "synology") }}{{ $soon = false }}{{ end }}{{ end }}{{ end }}
+<div class="pattern">
+<section class="wrap help-hero">
+<p class="help-crumb"><a href="{{ "/#turbine" | relLangURL }}">turbine</a> › {{ i18n "help_crumb" }}</p>
+<div class="help-title">
+<img src="{{ $icon.RelPermalink }}" alt="" width="56" height="56">
+<h1>{{ .Title }}</h1>
+</div>
+<p class="lead">{{ i18n "help_lead" }}</p>
+<div class="help-tabs" role="tablist" aria-label="{{ i18n "help_tabs_aria" }}">
+{{- range $i, $p := slice "windows" "macos" "synology" }}
+<button type="button" class="help-tab" role="tab" id="tab-{{ $p }}" data-platform="{{ $p }}" aria-controls="{{ $p }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ index $names $p }}</button>
+{{- end }}
+</div>
+</section>
+</div>
+
+<section class="wrap help-body">
+<div class="help-main">
+{{- range $p := slice "windows" "macos" "synology" }}
+<div class="help-panel" role="tabpanel" id="{{ $p }}" aria-labelledby="tab-{{ $p }}">
+<h2 class="help-panel-title">{{ index $names $p }}</h2>
+{{- if and (eq $p "synology") $soon }}
+<p class="help-soon">{{ i18n "help_syn_soon" }}</p>
+{{- end }}
+<ol class="help-steps">
+{{- range seq 4 }}
+<li><span class="help-no{{ if eq . 4 }} help-no-last{{ end }}">{{ . }}</span><div><strong>{{ i18n (printf "help_%s_%d_title" $p .) }}</strong>
+{{- if or $hasDmg (not (and (eq $p "macos") (eq . 1))) }}<p>{{ i18n (printf "help_%s_%d_body" $p .) $ctx | safeHTML }}</p>{{ end }}
+{{- if and (eq $p "windows") (eq . 2) }}
+<div class="smartscreen" aria-hidden="true"><strong>{{ i18n "help_win_dialog_title" }}</strong><span class="smartscreen-link">{{ i18n "help_win_dialog_more" }}</span><span class="smartscreen-btn">{{ i18n "help_win_dialog_run" }}</span></div>
+{{- end }}
+</div></li>
+{{- end }}
+</ol>
+{{- $mine := slice }}
+{{- with $rel }}{{ range .files }}{{ if and (eq .product "turbine") (eq .platform $p) }}{{ $mine = $mine | append . }}{{ end }}{{ end }}{{ end }}
+{{- if $mine }}
+<div class="help-sums">
+<h3>{{ i18n "help_sum_title" }}</h3>
+<p>{{ i18n "help_sum_lead" }}</p>
+<ul>
+{{- range sort $mine "name" }}
+<li><code class="sum-cmd">{{ if eq $p "windows" }}Get-FileHash -Algorithm SHA256 {{ .name }}{{ else }}shasum -a 256 {{ .name }}{{ end }}</code><code class="sum-hash">{{ .sha256 }}</code></li>
+{{- end }}
+</ul>
+</div>
+{{- end }}
+</div>
+{{- end }}
+</div>
+<aside class="help-aside">
+<div class="help-card help-card-fill"><strong>{{ i18n "help_aside_1_title" }}</strong><span>{{ i18n "help_aside_1_body" }}</span></div>
+<div class="help-card"><strong>{{ i18n "help_aside_2_title" }}</strong><span>{{ i18n "help_aside_2_body" (dict "Link" (printf `<a href="https://github.com/%s">GitHub</a>` site.Params.repo)) | safeHTML }}</span></div>
+</aside>
+</section>
+{{ end }}

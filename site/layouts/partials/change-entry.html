@@ -1,0 +1,20 @@
+{{- /* One changes entry. Params: page, list (true on the list page, where the title links to the entry). */ -}}
+{{- $p := .page -}}
+{{- $product := $p.Params.product -}}
+{{- $label := printf "%s %s" $product $p.Params.version -}}
+{{- $icon := resources.Get "brand/turbine.svg" -}}
+{{- $cls := "ch-icon" -}}
+{{- $linkURL := "/#turbine" -}}
+{{- if eq $product "pmpwrk" }}{{ $icon = resources.Get "brand/pmpwrk.svg" }}{{ $cls = "ch-icon ch-icon-round" }}{{ $linkURL = "/pmpwrk/" }}{{ end -}}
+{{- if eq $product "spec" }}{{ $icon = resources.Get "brand/us3-mark.svg" }}{{ $label = printf "%s %s" (i18n "ch_spec_label") $p.Params.version }}{{ $linkURL = "/spec/v1/" }}{{ end -}}
+<article class="ch-entry" data-product="{{ $product }}">
+<div class="ch-meta">
+<time class="ch-date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2006-01-02" }}</time>
+<div class="ch-label"><img class="{{ $cls }}" src="{{ $icon.RelPermalink }}" alt="" height="24"><span>{{ $label }}</span></div>
+</div>
+<div class="ch-body">
+{{ if .list }}<h2><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>{{ else }}<h1>{{ $p.Title }}</h1>{{ end }}
+{{ $p.Content }}
+<a class="ch-link" href="{{ $linkURL | relLangURL }}">{{ i18n (printf "ch_link_%s" $product) }}</a>
+</div>
+</article>

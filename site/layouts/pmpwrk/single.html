@@ -1,0 +1,43 @@
+{{ define "main" }}
+{{ $icon := resources.Get "brand/pmpwrk.svg" }}
+<div class="pattern">
+<section class="wrap hero">
+<div class="hero-text">
+<div class="pm-title">
+<img class="tile-icon tile-icon-round" src="{{ $icon.RelPermalink }}" alt="" width="64" height="64">
+<h1>pmpwrk</h1>
+</div>
+<p class="pm-tagline">{{ i18n "pm_tagline" }}</p>
+<p class="lead">{{ i18n "pm_lead" }}</p>
+{{ partial "downloads.html" (dict "product" "pmpwrk" "page" .) }}
+</div>
+<div class="care" aria-hidden="true">
+<div class="care-head"><span>{{ i18n "pm_care_title" }}</span><span>{{ i18n "pm_care_count" }}</span></div>
+<div class="care-row"><span class="care-dot care-green"></span><span class="care-name">bergwanderung-4k.mp4</span><span class="care-state">{{ i18n "pm_care_ok" }}</span></div>
+<div class="care-row"><span class="care-dot care-amber"></span><span class="care-name">hochzeit-anna-ben.mkv</span><span class="care-state">{{ i18n "pm_care_repair" }}</span></div>
+<div class="care-row"><span class="care-dot care-green"></span><span class="care-name">kurzfilm-abschlussprojekt.mov</span><span class="care-state">{{ i18n "pm_care_ok" }}</span></div>
+</div>
+</section>
+</div>
+
+<section class="band">
+<div class="wrap band-inner">
+<h2 class="h-section">{{ i18n "pm_way_title" }}</h2>
+<ol class="way">
+{{- range seq 4 }}
+<li><span class="way-num" aria-hidden="true">{{ . }}</span><div><strong>{{ i18n (printf "pm_way_%d_title" .) }}</strong><p>{{ i18n (printf "pm_way_%d_body" .) }}</p></div></li>
+{{- end }}
+</ol>
+</div>
+</section>
+
+<section class="wrap more">
+<h2 class="h-section">{{ i18n "pm_more_title" }}</h2>
+<div class="more-grid">
+{{- range seq 4 }}
+<div class="more-card"><strong>{{ i18n (printf "pm_more_%d_title" .) }}</strong><span>{{ i18n (printf "pm_more_%d_body" .) }}</span></div>
+{{- end }}
+</div>
+<p class="more-note">{{ i18n "pm_note" }}</p>
+</section>
+{{ end }}

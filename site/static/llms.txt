@@ -1,0 +1,29 @@
+# US3
+
+> US3 (Usenet Simplified Streaming) is an open format for storing a video file on Usenet, encrypted, so that it can be played back from the first second without downloading it first. Two free, open-source tools implement it: pmpwrk uploads and looks after files, turbine plays them.
+
+How it works:
+
+- A random token is the only secret. The encryption key and the locations of all articles are derived from it.
+- The file becomes an ordinary AES-256 encrypted ZIP (WinZip AE-2), split into Usenet articles and posted in one pass, with PAR2 recovery data alongside.
+- To play, turbine computes which article holds any given position in the video and fetches only that one, so playback and seeking start within seconds.
+- Without the US3 tools, all articles in order still form a normal encrypted ZIP that 7-Zip opens with the password.
+
+What US3 is not: there is no catalogue, no index and no search. US3 stores and plays what you upload yourself or receive a link for, for example backups of your own films. Who may post which content is governed by copyright law and the terms of the Usenet provider. Users bring their own account with any Usenet provider that offers encrypted connections.
+
+The site is available in English and German (German pages under /de/).
+
+## Specification
+
+- [US3 specification v1 (Markdown, English)](https://us3.tech/spec/v1/index.md): the complete format: token, key derivation, article naming, ZIP/AES layout, PAR2 recovery, links
+- [US3-Spezifikation v1 (Markdown, German)](https://us3.tech/de/spec/v1/index.md): the German original, identical in content
+
+## Tools
+
+- [turbine](https://us3.tech/turbine/): watches US3 videos. Desktop app for Windows and macOS with a tray icon and a web interface; a click on a US3 link adds the video to the library and plays it in the browser. The library can also be shared as a WebDAV folder for media servers, and mounted as a folder on Linux (FUSE). Command line on Linux.
+- [pmpwrk](https://us3.tech/pmpwrk/): uploads videos from an inbox folder, produces the US3 link and an NZB, then checks the upload regularly and reposts parts that have gone missing. Desktop app for Windows and macOS, or a service on a server or NAS with a REST interface.
+
+## Optional
+
+- [Setup help](https://us3.tech/help/): installing turbine on Windows and macOS
+- [Changes](https://us3.tech/changes/): releases of turbine and pmpwrk and revisions of the specification

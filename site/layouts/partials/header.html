@@ -1,0 +1,28 @@
+{{ $page := . }}
+{{ $mark := resources.Get "brand/us3-mark.svg" }}
+{{ $word := resources.Get "brand/us3-wordmark.svg" }}
+<header class="site-header" id="page-top">
+<nav class="wrap nav">
+<a class="brand" href="{{ "/" | relLangURL }}" aria-label="{{ i18n "home_aria" }}">
+<img class="brand-mark" src="{{ $mark.RelPermalink }}" alt="">
+<img class="brand-word" src="{{ $word.RelPermalink }}" alt="US3">
+</a>
+<div class="nav-links">
+<a href="{{ "/turbine/" | relLangURL }}"{{ if hasPrefix $page.Path "/turbine" }} aria-current="page"{{ end }}>{{ i18n "nav_watch" }}</a>
+<a href="{{ "/pmpwrk/" | relLangURL }}"{{ if hasPrefix $page.Path "/pmpwrk" }} aria-current="page"{{ end }}>{{ i18n "nav_upload" }}</a>
+<a href="{{ "/spec/v1/" | relLangURL }}"{{ if hasPrefix $page.Path "/spec" }} aria-current="page"{{ end }}>{{ i18n "nav_spec" }}</a>
+</div>
+<div class="lang-switch" role="group" aria-label="{{ i18n "language_aria" }}">
+{{- range hugo.Sites }}
+{{- $s := . }}
+{{- if eq $s.Language.Lang $page.Language.Lang }}
+<a href="{{ $page.RelPermalink }}" hreflang="{{ $s.Language.Lang }}" aria-current="true">{{ $s.Language.Label }}</a>
+{{- else }}
+{{- $target := $s.Home.RelPermalink }}
+{{- range $page.Translations }}{{ if eq .Language.Lang $s.Language.Lang }}{{ $target = .RelPermalink }}{{ end }}{{ end }}
+<a href="{{ $target }}" hreflang="{{ $s.Language.Lang }}">{{ $s.Language.Label }}</a>
+{{- end }}
+{{- end }}
+</div>
+</nav>
+</header>

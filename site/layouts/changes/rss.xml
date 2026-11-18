@@ -1,0 +1,22 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>{{ i18n "ch_feed_title" }}</title>
+<link>{{ .Permalink }}</link>
+<description>{{ i18n "ch_intro" }}</description>
+<language>{{ site.Language.Lang }}</language>
+{{- with (index .Pages.ByDate.Reverse 0) }}
+<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+{{- end }}
+{{ with .OutputFormats.Get "rss" }}{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType.Type | safeHTML }}{{ end }}
+{{- range .Pages.ByDate.Reverse }}
+<item>
+<title>{{ .Title }}</title>
+<link>{{ .Permalink }}</link>
+<pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+<guid>{{ .Permalink }}</guid>
+<description>{{ .Content | transform.XMLEscape | safeHTML }}</description>
+</item>
+{{- end }}
+</channel>
+</rss>

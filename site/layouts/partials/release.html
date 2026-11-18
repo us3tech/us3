@@ -1,0 +1,37 @@
+{{- /* Release data (design §9): site/data/release.json first, else a build-time fetch of params.releaseURL.
+       Returns dict{version,date,files} with valid entries only, or nil. An empty releaseURL fetches nothing. */ -}}
+{{- $data := hugo.Data.release -}}
+{{- if and (not $data) site.Params.releaseURL -}}
+  {{- with try (resources.GetRemote site.Params.releaseURL) -}}
+    {{- if .Err -}}
+      {{- warnf "release.json: %s" .Err -}}
+    {{- else -}}
+      {{- with .Value -}}
+        {{- with try (transform.Unmarshal .) -}}
+          {{- if .Err -}}
+            {{- warnf "release.json: %s" .Err -}}
+          {{- else -}}
+            {{- $data = .Value -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := false -}}
+{{- if and (reflect.IsMap $data) (eq (printf "%T" $data.version) "string") $data.version -}}
+  {{- $files := slice -}}
+  {{- range $data.files -}}
+    {{- if and (reflect.IsMap .) (in (slice "windows" "macos" "synology") .platform)
+               (in (slice "amd64" "arm64") .arch)
+               (in (slice "msi" "zip" "dmg" "spk") .kind)
+               (not (and (eq .platform "macos") (eq .arch "amd64")))
+               .name .product -}}
+      {{- $files = $files | append . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $files -}}
+    {{- $out = dict "version" $data.version "date" $data.date "files" $files -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

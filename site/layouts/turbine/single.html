@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ $icon := resources.Get "brand/turbine.svg" }}
+{{ $word := resources.Get "brand/turbine-wordmark-tm.svg" }}
+<div class="pattern">
+<section class="wrap hero">
+<div class="hero-text">
+<div class="pm-title tb-title">
+<img class="tile-icon" src="{{ $icon.RelPermalink }}" alt="" width="64" height="64">
+<h1><img src="{{ $word.RelPermalink }}" alt="turbine"></h1>
+</div>
+<p class="pm-tagline">{{ i18n "tb_tagline" }}</p>
+<p class="lead">{{ i18n "tb_lead" }}</p>
+{{ partial "downloads.html" (dict "product" "turbine" "page" .) }}
+<p class="tile-meta">{{ with partial "release.html" . }}{{ i18n "version_label" }} {{ .version }} · {{ end }}<a href="{{ i18n "path_changes" | relLangURL }}">{{ i18n "tile_turbine_news" }}</a> · <a href="{{ i18n "path_help" | relLangURL }}">{{ i18n "tile_turbine_help" }}</a></p>
+</div>
+<div class="care" aria-hidden="true">
+<div class="care-head"><span>{{ i18n "tb_lib_title" }}</span><span>{{ i18n "tb_lib_count" }}</span></div>
+<div class="care-row tb-playing"><span class="care-dot tb-dot-play"></span><span class="care-name">bergwanderung-4k.mp4</span><span class="care-state">{{ i18n "tb_lib_playing" }}</span><span class="tb-bar"><i></i></span></div>
+<div class="care-row"><span class="care-dot tb-dot-ready"></span><span class="care-name">hochzeit-anna-ben.mkv</span><span class="care-state">{{ i18n "tb_lib_ready" }}</span></div>
+<div class="care-row"><span class="care-dot tb-dot-ready"></span><span class="care-name">kurzfilm-abschlussprojekt.mov</span><span class="care-state">{{ i18n "tb_lib_ready" }}</span></div>
+</div>
+</section>
+</div>
+
+<section class="band">
+<div class="wrap band-inner">
+<h2 class="h-section">{{ i18n "tb_way_title" }}</h2>
+<ol class="way">
+{{- range seq 4 }}
+<li><span class="way-num" aria-hidden="true">{{ . }}</span><div><strong>{{ i18n (printf "tb_way_%d_title" .) }}</strong><p>{{ i18n (printf "tb_way_%d_body" .) }}</p></div></li>
+{{- end }}
+</ol>
+</div>
+</section>
+
+<section class="wrap more">
+<h2 class="h-section">{{ i18n "tb_more_title" }}</h2>
+<div class="more-grid">
+{{- range seq 4 }}
+<div class="more-card"><strong>{{ i18n (printf "tb_more_%d_title" .) }}</strong><span>{{ i18n (printf "tb_more_%d_body" .) }}</span></div>
+{{- end }}
+</div>
+<p class="more-note">{{ i18n "tb_note" }}</p>
+</section>
+{{ end }}

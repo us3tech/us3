@@ -1,0 +1,24 @@
+{{- /* schema.org data for search engines and AI search: the site on the home page, each tool on its own page. */ -}}
+{{- $ld := false -}}
+{{- $lang := .Language.Lang -}}
+{{- if .IsHome -}}
+  {{- $ld = dict "@context" "https://schema.org" "@type" "WebSite" "name" "US3" "alternateName" "Usenet Simplified Streaming"
+        "url" .Permalink "inLanguage" $lang "description" (i18n "hero_body") -}}
+{{- else -}}
+  {{- $tool := "" -}}{{- $desc := "" -}}{{- $cat := "" -}}
+  {{- if hasPrefix .Path "/turbine" }}{{ $tool = "turbine" }}{{ $desc = i18n "tb_lead" }}{{ $cat = "MultimediaApplication" }}{{ end -}}
+  {{- if hasPrefix .Path "/pmpwrk" }}{{ $tool = "pmpwrk" }}{{ $desc = i18n "pm_lead" }}{{ $cat = "UtilitiesApplication" }}{{ end -}}
+  {{- with $tool -}}
+    {{- $ld = dict "@context" "https://schema.org" "@type" "SoftwareApplication" "name" . "url" $.Permalink "inLanguage" $lang
+          "description" $desc "applicationCategory" $cat "operatingSystem" "Windows, macOS, Linux"
+          "license" "https://spdx.org/licenses/AGPL-3.0-or-later.html"
+          "isPartOf" (dict "@type" "WebSite" "name" "US3" "url" site.Home.Permalink)
+          "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "EUR") -}}
+    {{- with partial "release.html" $ -}}
+      {{- $ld = merge $ld (dict "softwareVersion" .version) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $ld }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end }}

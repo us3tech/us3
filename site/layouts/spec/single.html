@@ -1,0 +1,66 @@
+{{ define "main" }}
+{{ $raw := .RawContent }}
+{{ $version := "" }}{{ $status := "" }}{{ $date := "" }}{{ $revision := "" }}
+{{ with findRESubmatch `\*\*Version (\d+) — ([^,*]+),[^*]*?(\d{4}-\d{2}-\d{2})\*\*` $raw 1 }}
+{{ $m := index . 0 }}{{ $version = index $m 1 }}{{ $status = index $m 2 }}{{ $date = index $m 3 }}
+{{ end }}
+{{ with findRESubmatch `(?i)\(revision (\d+)` $raw 1 }}{{ $revision = index (index . 0) 1 }}{{ end }}
+{{ $file := path.Base .File.Filename }}
+{{ $history := printf "https://github.com/%s/commits/main/spec/%s" site.Params.repo $file }}
+{{/* HUGO_PARAMS_SPECCOMMIT_DE arrives as params.speccommit.de */}}
+{{ $commit := "" }}{{ with site.Params.speccommit }}{{ if reflect.IsMap . }}{{ $commit = index . $.Language.Lang }}{{ end }}{{ end }}
+{{ $md := .OutputFormats.Get "markdown" }}
+{{ $title := partial "title.html" . }}
+{{ $content := replaceRE `(?s)^\s*<h1[^>]*>.*?</h1>\s*` "" .Content 1 }}
+{{/* Every rule but the first closes a top-level section; give each closing rule, and the end, a way back up. */}}
+{{ $up := printf `<p class="sec-up"><a href="#page-top" title="%s" aria-label="%s">↑</a></p>` (i18n "to_top_short") (i18n "to_top_short") }}
+{{ $content = replace $content "<hr>" (printf "%s\n<hr>" $up) }}
+{{ $content = replace $content (printf "%s\n<hr>" $up) "<hr>" 1 }}
+{{ $content = printf "%s\n%s" $content $up }}
+<div class="pattern">
+<section class="wrap spec-hero">
+<div class="spec-hero-text">
+<h1>{{ i18n "spec_hero_title" }}</h1>
+<p class="lead">{{ i18n "spec_hero_body" }}</p>
+</div>
+<div class="spec-meta">
+{{ with $version }}<span class="spec-version">{{ i18n "version_label" }} {{ . }}{{ with $status }}, {{ . }}{{ end }}</span>{{ end }}
+<span>{{ with $date }}{{ i18n "spec_stand" }} {{ . }}{{ end }}{{ with $revision }} · Revision {{ . }}{{ end }}{{ with $commit }} · <span class="spec-commit">Commit <a href="{{ $history }}"><code>{{ . }}</code></a></span>{{ end }}</span>
+<span>{{ with $md }}<a href="{{ .RelPermalink }}">{{ i18n "spec_as_markdown" }}</a>{{ end }}{{ range .Translations }} · <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ i18n "spec_other_language" }}</a>{{ end }}</span>
+<span><a href="{{ $history }}">{{ i18n "spec_history" }}</a></span>
+</div>
+</section>
+
+<section class="wrap spec-path" aria-label="{{ i18n "spec_path_aria" }}">
+<a class="spec-step spec-step-first" href="#s1"><strong>{{ i18n "spec_path_1_title" }}</strong><span>{{ i18n "spec_path_1_body" }}</span></a>
+<div class="spec-arrow" aria-hidden="true">→</div>
+<a class="spec-step" href="#s2"><strong>{{ i18n "spec_path_2_title" }}</strong><span>{{ i18n "spec_path_2_body" }}</span></a>
+<div class="spec-arrow" aria-hidden="true">→</div>
+<a class="spec-step" href="#s4"><strong>{{ i18n "spec_path_3_title" }}</strong><span>{{ i18n "spec_path_3_body" }}</span></a>
+<div class="spec-arrow" aria-hidden="true">→</div>
+<a class="spec-step" href="#s6"><strong>{{ i18n "spec_path_4_title" }}</strong><span>{{ i18n "spec_path_4_body" }}</span></a>
+<div class="spec-arrow" aria-hidden="true">→</div>
+<a class="spec-step spec-step-last" href="#s8"><strong>{{ i18n "spec_path_5_title" }}</strong><span>{{ i18n "spec_path_5_body" }}</span></a>
+</section>
+</div>
+
+<section class="band">
+<div class="wrap spec-props">
+<div class="spec-prop"><h2>{{ i18n "spec_prop_1_title" }}</h2><p>{{ i18n "spec_prop_1_body" }}</p></div>
+<div class="spec-prop"><h2>{{ i18n "spec_prop_2_title" }}</h2><p>{{ i18n "spec_prop_2_body" }}</p></div>
+<div class="spec-prop"><h2>{{ i18n "spec_prop_3_title" }}</h2><p>{{ i18n "spec_prop_3_body" }}</p></div>
+</div>
+</section>
+
+<div class="wrap spec-body">
+<nav class="spec-toc" id="toc" aria-label="{{ i18n "spec_toc_aria" }}">
+<span class="spec-toc-label">{{ i18n "spec_toc" }}</span>
+{{ partial "spec-toc.html" .Fragments.Headings }}
+</nav>
+<article class="spec-text">
+<p class="spec-doc-title">{{ $title }}</p>
+<p class="spec-license">{{ i18n "spec_license" }}</p>
+{{ $content | safeHTML }}
+</article>
+</div>
+{{ end }}

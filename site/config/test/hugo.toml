@@ -1,0 +1,2 @@
+# Future-dated entries must build in tests.
+buildFuture = true
